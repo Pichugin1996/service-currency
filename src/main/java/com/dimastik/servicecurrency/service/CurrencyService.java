@@ -1,7 +1,7 @@
 package com.dimastik.servicecurrency.service;
 
 import com.dimastik.servicecurrency.client.CurrencyClient;
-import com.dimastik.servicecurrency.dto.CurrencyApiResponse;
+import com.dimastik.servicecurrency.dto.CurrencyResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -19,8 +19,12 @@ public class CurrencyService {
         this.currencyClient = currencyClient;
     }
 
-    public CurrencyApiResponse getCurrency() {
-        return currencyClient.getCurrencies(key);
+    public CurrencyResponse getCurrency(String codCurrency) {
+        CurrencyResponse response = currencyClient.getCurrencies(key);
+        if (codCurrency != null) {
+            response.setValue(response.getRates().get(codCurrency));
+        }
+        return response;
 
     }
 }

@@ -1,6 +1,6 @@
 package com.dimastik.servicecurrency.controller;
 
-import com.dimastik.servicecurrency.dto.CurrencyApiResponse;
+import com.dimastik.servicecurrency.dto.CurrencyResponse;
 import com.dimastik.servicecurrency.service.CurrencyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -16,8 +16,8 @@ public class CurrencyController {
     }
 
     @GetMapping("/get")
-    public CurrencyApiResponse getCurrency() {
-       return currencyService.getCurrency();
+    public CurrencyResponse getCurrency(@RequestParam(value = "codCurrency", required = false) String codCurrency) {
+       return currencyService.getCurrency(codCurrency);
     }
 
 }
