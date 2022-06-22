@@ -22,7 +22,13 @@ public class CurrencyService {
     public CurrencyResponse getCurrency(String codCurrency) {
         CurrencyResponse response = currencyClient.getCurrencies(key);
         if (codCurrency != null) {
+            if (codCurrency == "") {
+                codCurrency = "RUB";
+            } else if (!response.getRates().containsKey(codCurrency)) {
+                codCurrency = "RUB";
+            }
             response.setValue(response.getRates().get(codCurrency));
+            response.setCodCurrency(codCurrency);
         }
         return response;
 

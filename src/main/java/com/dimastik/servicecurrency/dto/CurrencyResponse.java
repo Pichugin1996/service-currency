@@ -10,6 +10,7 @@ public class CurrencyResponse {
     private String disclaimer;
     private String timestamp;
     private String base;
+    private String codCurrency;
     private Double value;
     private Map<String, Double> rates;
 }

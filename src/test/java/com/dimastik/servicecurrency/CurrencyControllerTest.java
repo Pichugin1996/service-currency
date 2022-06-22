@@ -39,7 +39,7 @@ public class CurrencyControllerTest {
     public void getResponse() throws Exception {
         String codCurrency = null;
         Mockito.when(currencyService.getCurrency(codCurrency)).thenReturn(buildCurrencyResponse());
-        MvcResult mvcResult = mockMvc.perform(get("/get").contentType(MediaType.APPLICATION_JSON))
+        MvcResult mvcResult = mockMvc.perform(get("/api/getCurrency").contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk()).andReturn();
 
         String contentAsString = mvcResult.getResponse().getContentAsString();
@@ -54,7 +54,7 @@ public class CurrencyControllerTest {
     public void getResponse_withParam() throws Exception {
         String codCurrency = "RUB";
         Mockito.when(currencyService.getCurrency(codCurrency)).thenReturn(buildCurrencyResponseWithParam());
-        MvcResult mvcResult = mockMvc.perform(get("/get").contentType(MediaType.APPLICATION_JSON)
+        MvcResult mvcResult = mockMvc.perform(get("/api/getCurrency").contentType(MediaType.APPLICATION_JSON)
                         .param("codCurrency", codCurrency))
                 .andExpect(status().isOk()).andReturn();
 

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@RequestMapping("/api")
 public class CurrencyController {
 
     private final CurrencyService currencyService;
@@ -15,8 +16,9 @@ public class CurrencyController {
         this.currencyService = currencyService;
     }
 
-    @GetMapping("/get")
-    public CurrencyResponse getCurrency(@RequestParam(value = "codCurrency", required = false) String codCurrency) {
+    @GetMapping("/getCurrency")
+    public CurrencyResponse getCurrency(@RequestParam(value = "codCurrency", required = false, defaultValue = "RUB")
+                                                    String codCurrency) {
        return currencyService.getCurrency(codCurrency);
     }
 
